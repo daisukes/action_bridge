@@ -148,9 +148,8 @@ private:
       //Changes as per Dashing
       auto send_goal_ops = ROS2SendGoalOptions();
       send_goal_ops.goal_response_callback =
-        [this](auto gh2_future) mutable
+        [this](ROS2GoalHandle goal_handle) mutable
       {
-        auto goal_handle = gh2_future.get();
         if (!goal_handle) {
           gh1_.setRejected(); // goal was not accepted by remote server
           return;
